@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}
+    tweet
+{% endblock %}
+
+{% block content %}
+    <h1 class='text-center'>Welcome to tweet</h1>
+    {% if query %}
+  <h2>Results for "{{ query }}":</h2>
+{% endif %}
+<ul>
+    
+{% if tweets %}
+<li>
+    <div class="container row gap-3">
+        {% for tweet in tweets  %}
+            <div class="card" style="width: 18rem;">
+  <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{tweet.user}}</h5>
+    <p class="card-text">{{tweet.text}}</p>
+    {% if tweet.user == user %}
+    <a href="{% url 'tweet_edit' tweet.id%}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'tweet_delete' tweet.id%}" class="btn btn-primary">Delete</a>
+    {% endif %}
+  </div>
+</div>
+
+        {% endfor %}
+    </div>
+</li>
+     {% else %}
+    <li>No tweets found.</li>
+{% endif %}
+</ul>
+
+{% endblock %}

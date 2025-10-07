@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "tweethq/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "tweethq/wsgi.py"
+    }
+  ]
+}
